@@ -30,7 +30,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -92,25 +92,33 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+
+set $WS1 1:chrome
+set $WS2 2:terminals
+set $WS3 3:code
+set $WS4 4:im
+set $WS5 5:slack
+set $WS6 6:spotify
+
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
+bindsym $mod+1 workspace $WS1
+bindsym $mod+2 workspace $WS2
+bindsym $mod+3 workspace $WS3
+bindsym $mod+4 workspace $WS4
+bindsym $mod+5 workspace $WS5
+bindsym $mod+6 workspace $WS6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+1 move container to workspace $WS1
+bindsym $mod+Shift+2 move container to workspace $WS2
+bindsym $mod+Shift+3 move container to workspace $WS3
+bindsym $mod+Shift+4 move container to workspace $WS4
+bindsym $mod+Shift+5 move container to workspace $WS5
+bindsym $mod+Shift+6 move container to workspace $WS6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
@@ -160,7 +168,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_out
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo -5% && killall -SIGUSR1 i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo toggle && killall -SIGUSR1 i3status
 
-# Media play, pause, stop, next, prev. This is done by installing playerctl 
+# Media play, pause, stop, next, prev. This is done by installing playerctl
 # https://github.com/acrisci/playerctl
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioStop exec --no-startup-id playerctl stop
@@ -173,9 +181,31 @@ exec --no-startup-id nm-applet
 # scaling HIDPI
 exec --no-startup-id xrandr --output eDP1 --scale 0.85x0.85
 
-# Set background 
+# Set background
 exec --no-startup-id feh --bg-scale /home/gagge/backgrounds/005746_Christian-Bothner_www.nordnorge.com_Moskenes.jpg
 
 # Locker
 bindsym $mod+Shift+l exec /home/gagge/.local/locker.sh
 exec --no-startup-id xautolock -time 5 -locker '/home/gagge/.local/locker.sh' &
+
+#CKB
+assign [class="^ckb$"] → 10
+exec --no-startup-id /usr/bin/ckb -silent %U
+
+# Assign chrome to WS1
+assign [class="^google-chrome$"] → $WS1
+
+# Set upp Terminals in WS2
+exec --no-startup-id "i3-msg 'workspace $WS2; append_layout /home/gagge/.gaggesettings/i3/layouts/hd/terminals.json'"
+exec --no-startup-id urxvt
+exec --no-startup-id urxvt
+
+# Set up Instant messengers in WS4
+exec --no-startup-id "i3-msg 'workspace $WS4; append_layout /home/gagge/.gaggesettings/i3/layouts/hd/imgroup.json'"
+exec --no-startup-id urxvt
+
+# Assign Slack to WS5
+assign [class="^Scudcloud$"] → $WS5
+
+# Assign Spotify to WS6 (Crapy solution but spotify's wsclass doesn't work properly)
+for_window [class="Spotify"] move to workspace $WS6

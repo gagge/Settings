@@ -1,0 +1,29 @@
+/*
+** Puts to vertically split urxvt windows on workspace2
+*/
+{
+    "layout": "splitv",
+    "type": "con",
+    "nodes": [
+        {
+            "name": "urxvt",
+            "percent": 0.5,
+            "type": "con",
+            "swallows": [
+                {
+                    "class": "^URxvt$"
+                }
+            ]
+        },
+        {
+            "name": "urxvt",
+            "percent": 0.5,
+            "type": "con",
+            "swallows": [
+                {
+                    "class": "^URxvt"
+                }
+            ]
+        }
+    ]
+}
