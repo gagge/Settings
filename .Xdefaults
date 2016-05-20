@@ -1,0 +1,18 @@
+urxvt*loginShell:true
+urxvt*inheritPixmap: true
+urxvt*tintColor: white
+urxvt*transparent:true
+urxvt*shading:35
+urxvt*background:Black
+urxvt*foreground:White
+urxvt*scrollBar:false
+urxvt*scrollBar_right:true
+urxvt*transpscrollbar:true
+urxvt*saveLines:50000
+URxvt*font: xft:terminus:pixelsize=12
+URxvt.letterSpace: -5
+URxvt.perl-ext-common: default,matcher
+URxvt.urlLauncher: google-chrome
+URxvt.matcher.button: 2
+URxvt.matcher.pattern.1: \bwww\.[\w-]\.[\w./?&@#-]*[\w/-]
+URxvt.blurRadius: 10
