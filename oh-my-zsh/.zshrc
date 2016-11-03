@@ -56,6 +56,12 @@ plugins=(git)
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
+eval `dircolors /home/gagge/settings/oh-my-zsh/dircolors.ansi-light`
+
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+autoload -Uz compinit
+compinit
+
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
