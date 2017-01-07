@@ -1,0 +1,87 @@
+
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+command=/usr/lib/i3blocks/$BLOCK_NAME
+separator_block_width=30
+markup=pango
+interval=1
+color=#CCCCCC
+
+
+# Volume indicator
+[volume]
+label=<span color="#0BF"> </span>
+instance=Master
+interval=once
+signal=10
+
+# Network interface monitoring
+[iface]
+instance=wlp3s0
+label=<span color="#0BF"> </span>
+
+[iface]
+instance=enp0s31f6
+label=<span color="#0BF"> </span>
+
+[iface]
+instance=docker0
+label=<span color="#0BF"> </span>
+
+[latency]
+label=<span color="#0BF"> </span>
+command=ping -c 1 ping.sunet.se | tail -1| awk '{print $4}' | cut -d '/' -f 2
+min_width= 100.000
+
+# System
+[load_average]
+label=<span color="#0BF"> </span>
+
+[cpu_usage]
+label=<span color="#0BF"> </span>
+min_width= 100.00%
+align=center
+
+[memory]
+label=<span color="#0BF"> </span>
+instance=mem
+
+[disk]
+label=<span color="#0BF"> </span>
+
+# Temperature
+[temperature]
+label=<span color="#0BF"> </span>
+
+# Date Time
+[date]
+label=<span color="#0BF"> </span>
+command=date '+%Y-%m-%d'
+
+[time]
+label=<span color="#0BF"> </span>
+command=date '+%H:%M:%S'
