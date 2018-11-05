@@ -95,3 +95,5 @@ function git_prompt_info() {
 }
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
+
+alias vi='vim'

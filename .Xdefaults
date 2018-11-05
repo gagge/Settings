@@ -10,7 +10,7 @@ urxvt*scrollBar_right:true
 urxvt*transpscrollbar:true
 urxvt*saveLines:50000
 URxvt*font: xft:terminus:pixelsize=12
-URxvt.letterSpace: -5
+URxvt.letterSpace: -4
 URxvt.perl-ext-common: default,matcher
 URxvt.urlLauncher: google-chrome
 URxvt.matcher.button: 2
